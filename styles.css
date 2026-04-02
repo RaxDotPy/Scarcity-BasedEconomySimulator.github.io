@@ -60,7 +60,7 @@ body::before {
 
 /* ======================================= LOADING SCREEN ======================================= */
 
-/* #loading {
+#loading {
     position: fixed;
     inset: 0;
     background: var(--bg);
@@ -103,7 +103,7 @@ body::before {
     letter-spacing: 0.15em;
     color: var(--muted);
     text-transform: uppercase;
-} */
+}
 
 /* ======================================= HEADER 
 =======================================*/
