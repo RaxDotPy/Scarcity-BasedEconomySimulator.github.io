@@ -235,4 +235,11 @@ runLoadingScreen().then(() => {
 
   // Chart redraws more frequently for smooth price-line updates
   setInterval(drawChart, 500);
+
+  // Auto-reset de sesión cada 60 minutos
+  setInterval(() => {
+    resetMarketSession();
+    addTickerEvent('🔄 Session Reset — New epoch started');
+    renderAll();
+  }, RESET_INTERVAL_MS);
 });

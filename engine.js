@@ -280,3 +280,27 @@ function tick() {
 
   return triggeredEvent;
 }
+
+// ── Auto-Reset (cada 60 minutos) ─────────────────────────────
+
+const RESET_INTERVAL_MS = 60 * 60 * 1000; // 60 minutos
+
+/**
+ * Resetea el trade feed, usuarios activos, volumen global
+ * y eventos activos. Los precios y candles no se tocan.
+ */
+function resetMarketSession() {
+  state.tradeLog     = [];
+  state.totalTrades  = 0;
+  state.totalVolume  = 0;
+  state.globalUsers  = 150;
+  state.activeEvents = [];
+
+  state.items.forEach(item => {
+    item.volume24h = 0;
+    item.high24h   = item.price;
+    item.low24h    = item.price;
+    item.change24h = 0;
+    item.txHistory = [];
+  });
+}
