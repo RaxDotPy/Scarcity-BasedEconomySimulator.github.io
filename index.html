@@ -1,115 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAX EXCHANGE - Scarcity Economy Simulator</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAX EXCHANGE — Scarcity Economy Simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
-    <!-- Loading screen -->
-    <div id="loading">
-        <div class="load-logo">RAX</div>
-        <div class="load-bar"><div class="load-fill" id="loadFill"></div></div>
-        <div class="load-text" id="loadText">Initializing market engine</div>
+
+  <!-- Loading screen -->
+  <div id="loading">
+    <div class="load-logo">RAX</div>
+    <div class="load-bar"><div class="load-fill" id="loadFill"></div></div>
+    <div class="load-text" id="loadText">Initializing market engine...</div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <div class="logo-dot"></div>
+      RAX EXCHANGE
+    </div>
+    <div class="header-stats">
+      <div class="stat-pill">
+        <span class="stat-label">Active Users</span>
+        <span class="stat-value accent" id="hdrUsers">—</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-label">24h Volume</span>
+        <span class="stat-value" id="hdrVolume">—</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-label">Total Trades</span>
+        <span class="stat-value" id="hdrTrades">—</span>
+      </div>
+      <div class="status-bar">
+        <div class="logo-dot" style="width:6px;height:6px;"></div>
+        LIVE
+      </div>
+    </div>
+  </header>
+
+  <!-- Main app -->
+  <div class="app">
+
+    <!-- Item List (left sidebar) -->
+    <div class="item-list">
+      <div class="panel-title">Market</div>
+      <div id="itemList"></div>
     </div>
 
-    <!-- Header -->
-     <header>
-        <div class="logo">
-            <div class="logo-dot"></div>
-            RAX EXCHANGE
+    <!-- Chart area -->
+    <div class="chart-area">
+      <div class="chart-header">
+        <div class="chart-item-info">
+          <div class="chart-item-name" id="chartName">Phoenix Feather</div>
+          <div class="chart-rarity-badge" id="chartBadge">Legendary</div>
         </div>
-        <div class="header-stats">
-            <div class="stat-pill">
-                <span class="stat-label">Active users</span>
-                <span class="stat-value accent" id="hdrUsers">—</span>
-            </div>
-            <div class="stat-pill">
-                <span class="stat-label">24h Volume</span>
-                <span class="stat-value" id="hdrVolume">—</span>
-
-            </div>
-            <div class="stat-pill">
-                <span class="stat-label">Total Trades</span>
-                <span class="stat-value" id="hdrTrades">—</span>
-
-            </div>
-            <div class="status-bar">
-                <div class="logo-dot" style="width:6px;height:6px;"></div>
-                LIVE
-            </div>
+        <div class="interval-btns">
+          <button class="interval-btn active" onclick="setInterval2('1m', event)">1m</button>
+          <button class="interval-btn" onclick="setInterval2('5m', event)">5m</button>
+          <button class="interval-btn" onclick="setInterval2('1h', event)">1h</button>
         </div>
-     </header>
-
-     <!-- Main app -->
-     <div class="app">
-
-        <!-- Item List (left sidebar) -->
-        <div class="item-list">
-            <div class="panel-title">Market</div>
-            <div id="itemList"></div>
+        <div class="chart-price-block">
+          <div class="chart-current-price" id="chartPrice">—</div>
+          <div class="chart-price-meta">
+            <div class="chart-meta-item">H: <span id="chartHigh">—</span></div>
+            <div class="chart-meta-item">L: <span id="chartLow">—</span></div>
+            <div class="chart-meta-item">Vol: <span id="chartVol">—</span></div>
+            <div class="chart-meta-item" id="chartChange">—</div>
+          </div>
         </div>
-        <!-- Chart area -->
-        <div class="chart-area">
-            <div class="chart-header">
-                <div class="chart-item-info">
-                    <div class="chart-item-name" id="chartName">Phoenix Feather</div>
-                    <div class="chart-rarity-badge" id="chartBadge">Legendary</div>
-                </div>
-                <div class="interval-btns">
-                    <button class="interval-btn active" onclick="setInterval2('1m', event)">1m</button>
-                    <button class="interval-btn active" onclick="setInterval2('5m', event)">5m</button>
-                    <button class="interval-btn active" onclick="setInterval2('1h', event)">1h</button>
-                </div>
-                <div class="chart-price-block">
-                    <div class="chart-current-price" id="chartPrice">—</div>
-                    <div class="chart-price-meta">
-                        <div class="chart-meta-item">H: <span id="chartHigh">—</span></div>
-                        <div class="chart-meta-item">L: <span id="chartLow">—</span></div>
-                        <div class="chart-meta-item">Vol: <span id="chartVol">—</span>
-                        <div class="chart-meta-item" id="chartChange">—</div></div>
-                    </div>
-                </div>
-                <canvas id="chart"></canvas>
-                <div class="events-ticker">
-                    <span class="ticker-label">Events</span>
-                    <span id="tickerContent" class="ticket-event">Market initializing...</span>
-                </div>
-            </div>
-            <!-- Order Book (right sidebar) -->
-            <div class="orderbook">
-                <div class="panel-title">Order Book</div>
-                <div class="ob-side ob-sell">
-                    <div class="ob-header">
-                        <span>Price</span><span>Qty</span><span>Total</span>
-                    </div>
-                    <div class="ob-rows" id="obSell"></div>
-                </div>
-                <div class="ob-spread">
-                    <span class="spread-label">Spread</span>
-                    <span class="spread-value" id="obSpread">—</span>
-                </div>
-                <div class="ob-side ob-buy">
-                    <div class="ob-rows" id="obBuy"></div>
-                </div>
-            </div>
+      </div>
+      <canvas id="chart"></canvas>
+      <div class="events-ticker">
+        <span class="ticker-label">Events</span>
+        <span id="tickerContent" class="ticker-event">Market initializing...</span>
+      </div>
+    </div>
 
-            <!-- Trade Feed (bottom center) -->
-            <div class="trade-feed">
-                <div class="panel-title">Recent Trades</div>
-                <div class="feed-rows" id="feedRows"></div>
-            </div>
-
+    <!-- Order Book (right sidebar) -->
+    <div class="orderbook">
+      <div class="panel-title">Order Book</div>
+      <div class="ob-side ob-sell">
+        <div class="ob-header">
+          <span>Price</span><span>Qty</span><span>Total</span>
         </div>
-     </div>
+        <div class="ob-rows" id="obSell"></div>
+      </div>
+      <div class="ob-spread">
+        <span class="spread-label">Spread</span>
+        <span class="spread-value" id="obSpread">—</span>
+      </div>
+      <div class="ob-side ob-buy">
+        <div class="ob-rows" id="obBuy"></div>
+      </div>
+    </div>
 
-     <script src="engine.js"></script>
-     <script src="chart.js"></script>
-     <script src="ui.js"></script>
+    <!-- Trade Feed (bottom center) -->
+    <div class="trade-feed">
+      <div class="panel-title">Recent Trades</div>
+      <div class="feed-rows" id="feedRows"></div>
+    </div>
+
+  </div>
+
+  <script src="engine.js"></script>
+  <script src="chart.js"></script>
+  <script src="ui.js"></script>
 
 </body>
 </html>
